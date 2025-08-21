@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>📅 Task Reminder Dashboard</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: #f0f4f8;
+      margin: 0;
+      padding: 20px;
+      color: #333;
+    }
+    .header {
+      background: #4a90e2;
+      padding: 20px;
+      border-radius: 10px;
+      color: white;
+      text-align: center;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    }
+    .reminder-container {
+      max-width: 800px;
+      margin: 30px auto;
+      background: white;
+      padding: 25px;
+      border-radius: 12px;
+      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+    }
+    h2 {
+      margin-bottom: 15px;
+    }
+    input, textarea, button {
+      width: 100%;
+      padding: 12px;
+      margin: 10px 0;
+      font-size: 16px;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+    }
+    button {
+      background-color: #4caf50;
+      color: white;
+      border: none;
+      font-weight: bold;
+      transition: background 0.3s ease;
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: #388e3c;
+    }
+    .task-list {
+      margin-top: 20px;
+    }
+    .task-item {
+      padding: 15px;
+      border-left: 5px solid #4a90e2;
+      background: #f9f9f9;
+      margin-bottom: 10px;
+      border-radius: 8px;
+    }
+    .completed {
+      text-decoration: line-through;
+      color: gray;
+      opacity: 0.7;
+    }
+    .task-timer {
+      font-size: 14px;
+      color: #999;
+      margin-top: 5px;
+    }
+    .task-actions button {
+      width: auto;
+      margin-right: 10px;
+      background-color: #2196f3;
+    }
+    .task-actions button:last-child {
+      background-color: #f44336;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="header">
+    <h1>📅 Smart Reminder Page</h1>
+    <p>Track your tasks, stay productive, and never miss a deadline!</p>
+  </div>
+
+  <div class="reminder-container">
+    <h2>Add New Task</h2>
+    <input type="text" id="task-title" placeholder="Task Title">
+    <textarea id="task-desc" placeholder="Task Description"></textarea>
+    <input type="datetime-local" id="task-deadline">
+    <button onclick="addTask()">➕ Add Task</button>
+
+    <div class="task-list" id="task-list">
+      <!-- Tasks will appear here -->
+    </div>
+  </div>
+
+
+
+</body>
+</html>

@@ -1,0 +1,98 @@
+/* General styling */
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  margin: 0;
+  padding: 20px;
+  background-color: #f9f9f9;
+  color: #333;
+}
+
+/* Title */
+h2 {
+  text-align: center;
+  margin-bottom: 30px;
+  font-size: 28px;
+  color: #2b3a67;
+}
+
+/* Container */
+.progress-container {
+  max-width: 700px;
+  margin: 0 auto;
+  background: white;
+  border-radius: 16px;
+  padding: 30px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+}
+
+/* Circular study time section */
+.circular-chart {
+  position: relative;
+  width: 220px;
+  height: 220px;
+  margin: 0 auto 40px auto;
+}
+
+.circular-chart svg {
+  transform: rotate(-90deg);
+}
+
+.circle-bg {
+  fill: none;
+  stroke: #eee;
+  stroke-width: 15;
+}
+
+.circle {
+  fill: none;
+  stroke-width: 15;
+  stroke-linecap: round;
+  stroke: #4caf50;
+  stroke-dasharray: 440;
+  stroke-dashoffset: 0;
+  transition: stroke-dashoffset 1s ease-out;
+}
+
+.circle-text {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 22px;
+  font-weight: bold;
+  color: #4caf50;
+}
+
+/* Weekly bar chart */
+.bar-chart {
+  width: 100%;
+  margin-top: 30px;
+}
+
+.bar {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.bar-label {
+  width: 60px;
+  font-weight: 500;
+}
+
+.bar-bg {
+  flex: 1;
+  background-color: #ddd;
+  border-radius: 20px;
+  overflow: hidden;
+  height: 16px;
+  margin-left: 10px;
+}
+
+.bar-fill {
+  height: 100%;
+  background: linear-gradient(to right, #4caf50, #81c784);
+  width: 0%;
+  transition: width 1s ease-in-out;
+  border-radius: 20px;
+}

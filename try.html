@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Brainstorm Dashboard</title>
+  <link rel="stylesheet" href="try.css" />
+</head>
+<body>
+  <div class="container">
+    <aside class="sidebar" id="sidebar">
+      <div class="toggle-btn" onclick="toggleSidebar()">☰</div>
+      <h2>🧠 Brainstorm</h2>
+      <nav class="menu">
+        <a href="#" onclick="loadPage('dashboard')">Dashboard</a>
+        <a href="#" onclick="loadPage('planner')">Study Planner</a>
+        <a href="#" onclick="loadPage('qna')">AI Q&A</a>
+        <a href="#" onclick="loadPage('reminders')">Reminders</a>
+        <a href="#" onclick="loadPage('notes')">Notes</a>
+        <a href="#" onclick="loadPage('mock')">Mock Tests</a>
+        <a href="#" onclick="loadPage('progress')">Progress</a>
+        <a href="#" onclick="loadPage('motivation')">Motivation</a>
+        <a href="#" onclick="loadPage('suggestions')">Suggestions</a>
+        <a href="#" onclick="toggleDarkMode()">Toggle Dark Mode</a>
+      </nav>
+    </aside>
+
+    <main class="main" id="main-content">
+      <!-- Default load -->
+    </main>
+  </div>
+
+  <script src="try.js"></script>
+</body>
+</html>

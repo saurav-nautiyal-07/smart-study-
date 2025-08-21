@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Study Progress</title>
+  <link rel="stylesheet" href="progress.css" />
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+  <div class="progress-container">
+    <h1>Study Progress Tracker</h1>
+
+    <div class="circular-chart">
+      <canvas id="studyPieChart"></canvas>
+      <div class="study-time-label" id="totalTime">0 hr</div>
+    </div>
+
+    <div class="weekly-progress">
+      <h2>Weekly Study Overview</h2>
+      <canvas id="weeklyBarChart"></canvas>
+    </div>
+
+    <div class="daily-goal">
+      <h3>Set Daily Goal</h3>
+      <input type="number" id="goalInput" placeholder="Hours...">
+      <button onclick="setGoal()">Save Goal</button>
+      <p id="goalDisplay"></p>
+    </div>
+  </div>
+
+  <script src="progress.js"></script>
+</body>
+</html>
