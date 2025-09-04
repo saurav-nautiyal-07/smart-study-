@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Smart Study Planner</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: Arial, sans-serif;
+      background:#F5F7FA;
+      transition: margin-left 0.4s ease-in-out;
+    }
+
+    /* Sidebar */
+    .slider {
+      width: 200px;
+      height: 100vh;
+      background-color: #2563EB;
+      position: fixed;
+      top: 0;
+      left: 0;
+      transform: translateX(-200px); /* hidden */
+      transition: transform 0.4s ease-in-out;
+      color: white;
+      padding: 20px 10px;
+      box-sizing: border-box;
+      z-index: 998;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* Toggle button */
+    .slidbtn button {
+      width: 40px;
+      height: 40px;
+      background-color: #111;
+      color: white;
+      border: none;
+      cursor: pointer;
+      font-size: 20px;
+      border-radius: 5px;
+      transition: background 0.2s;
+    }
+    .slidbtn button:hover {
+      background-color: #333;
+    }
+
+    /* Sidebar open state */
+    body.open .slider {
+      transform: translateX(0);
+    }
+    body.open .content {
+      margin-left: 200px;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Navbar -->
+  <nav class="flex items-center justify-between bg-blue-700 text-white px-6 py-3 shadow">
+    <div class="slidbtn">
+      <button id="slider-btn" onclick="slidbar()">☰</button>
+    </div>
+    <h1 class="text-xl font-bold">📘 Smart Study Planner</h1>
+    <a href="#" class="bg-black px-3 py-1 rounded hover:bg-red-600"><i class="fa-solid fa-right-from-bracket"></i> Logout</a>
+  </nav>
+
+  <!-- Sidebar -->
+  <div class="slider" id="slider">
+    <h2 class="text-lg font-bold mb-4">Menu</h2>
+    <div class="menu space-y-3">
+      <button onclick="location.href='#'">Dashboard</button>
+      <button onclick="location.href='#'">Notes</button>
+      <button onclick="location.href='#'">Reminders</button>
+      <button onclick="location.href='#'">Mock Tests</button>
+      <button onclick="location.href='#'">Progress</button>
+    </div>
+  </div>
+
+  <!-- Main Content -->
+  <main class="content p-6">
+    <div class="grid grid-cols-3 gap-6">
+      <!-- Calendar Section -->
+      <section class="col-span-2 bg-white p-5 rounded-2xl shadow">
+        <h3 class="text-xl font-semibold mb-4">📅 Calendar</h3>
+        <div class="grid grid-cols-7 gap-2 text-center">
+          <div class="font-bold">Sun</div>
+          <div class="font-bold">Mon</div>
+          <div class="font-bold">Tue</div>
+          <div class="font-bold">Wed</div>
+          <div class="font-bold">Thu</div>
+          <div class="font-bold">Fri</div>
+          <div class="font-bold">Sat</div>
+
+          <!-- Example Days -->
+          <div class="p-3 border rounded">1</div>
+          <div class="p-3 border rounded bg-green-200">2<br><small>Math Test</small></div>
+          <div class="p-3 border rounded">3</div>
+          <div class="p-3 border rounded">4</div>
+          <div class="p-3 border rounded bg-yellow-200">5<br><small>Assignment</small></div>
+          <div class="p-3 border rounded">6</div>
+          <div class="p-3 border rounded">7</div>
+        </div>
+      </section>
+
+      <!-- Upcoming Tasks -->
+      <aside class="bg-white p-5 rounded-2xl shadow">
+        <h3 class="text-xl font-semibold mb-4">📌 Upcoming Deadlines</h3>
+        <ul class="space-y-3">
+          <li class="p-3 bg-red-100 rounded">⚠️ Physics Exam - 10th Sept</li>
+          <li class="p-3 bg-yellow-100 rounded">📝 English Essay - 12th Sept</li>
+          <li class="p-3 bg-green-100 rounded">📘 Math Assignment - 15th Sept</li>
+        </ul>
+      </aside>
+    </div>
+  </main>
+
+  <!-- Floating Add Button -->
+  <button class="fixed bottom-6 right-6 bg-blue-700 text-white p-4 rounded-full shadow-lg hover:bg-blue-800">➕</button>
+
+  <!-- JS for sidebar toggle -->
+  <script>
+    function slidbar() {
+      document.body.classList.toggle("open");  
+      const sliderBtn = document.getElementById("slider-btn");
+
+      if (document.body.classList.contains("open")) {
+        sliderBtn.textContent = "✖"; // Close icon
+      } else {
+        sliderBtn.textContent = "☰"; // Menu icon
+      }
+    }
+  </script>
+</body>
+</html>

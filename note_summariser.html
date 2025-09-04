@@ -11,7 +11,7 @@
     margin: 0;
     padding: 0;
     font-family: Arial, sans-serif;
-    background: rgb(237, 141, 141);
+    background:#F5F7FA;
     transition: margin-left 0.4s ease-in-out;
   }
 
@@ -19,7 +19,7 @@
   .slider {
    width: 200px;
    height: 100vh;
-   background-color: rgb(23, 134, 246);
+   background-color: #2563EB;
    position: fixed;
    top: 0;
    left: 0;
@@ -37,7 +37,7 @@
 
   /* ✅ Corrected navbar selector */
   .navbar.bg-body-tertiary {
-    background-color: rgb(62, 108, 234);
+    background-color: #2563EB;
     color: white;
     display: flex;
     align-items: center;
@@ -53,6 +53,7 @@
    display: inline-block;
    margin-right: 10px;
    z-index: 999;
+  
 
   }
   .slidbtn button {
@@ -153,7 +154,7 @@
   margin-left: 100px;
   border-radius: 10px;
   box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-  background: rgb(217, 15, 15);}
+  background: rgb(67, 139, 202);}
   .box1 {background: rgb(9, 113, 193);
     
   }
@@ -194,6 +195,12 @@
     transition: background-color 0.3s ease;
     margin-top: 20px;}
   .linkbtn:hover { background-color: #2cb158;}
+  .heading{
+    text-align: center;
+    color: white;
+    font-size: 24px;
+    margin-bottom: 20px;
+  }
 
  </style>
 
@@ -233,7 +240,7 @@
 <div class="conternar">
   <div class="box box1">
 
-<h2>Upload Video</h2>
+<h1 class="heading">Upload Video</h1>
 <div class="video-upload">
 <input id="videoFile" type="file" accept="video/*" />
 </div>
@@ -242,7 +249,7 @@
 
   
   <div class="box box2">
-    <h1>PAST YOU TUBE LINK</h1>
+    <h1 class="heading">PAST YOU TUBE LINK</h1>
     <input class="youtube-link" type="text" id="youtubeLink" placeholder="Enter YouTube link here">
     <button class="linkbtn" id="convertBtn" type="button">Convert to</button>
 
@@ -255,7 +262,7 @@
 
 
   
-  <script>
+  <!-- <script>
    
  function slidbar() {
    document.body.classList.toggle("open");  
@@ -266,6 +273,32 @@
    } else {
      sliderBtn.textContent = "☰"; // Menu icon
    }}
-  </script>
+  </script> -->
+
+
+
+  <script>
+ function slidbar() {
+   document.body.classList.toggle("open");  
+
+   const sliderBtn = document.getElementById("slider-btn");
+
+   if (document.body.classList.contains("open")) {
+     sliderBtn.style.display = "none"; // hide ☰ when sidebar opens
+   } else {
+     sliderBtn.style.display = "inline-block"; // show ☰ again when closed
+   }
+ }
+
+ // ✅ Add click event to "Menu" heading for closing
+ document.addEventListener("DOMContentLoaded", function() {
+   const menuHeading = document.querySelector(".slider h2");
+   menuHeading.addEventListener("click", function() {
+     document.body.classList.remove("open"); // close sidebar
+     document.getElementById("slider-btn").style.display = "inline-block"; // show ☰ again
+   });
+ });
+</script>
+    
 </body>
 </html>

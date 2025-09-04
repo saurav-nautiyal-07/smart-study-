@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MyStudyLife | Student Planner</title>
+  <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"> -->
+  <!-- <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet"> -->
+
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; font-family: "Poppins", sans-serif; }
+    body { background: #f4f9ff; color: #333; }
+
+    /* NAVBAR */
+    header {
+      background: #3498db; color: white; display: flex; justify-content: space-between; 
+      align-items: center; padding: 15px 8%; position: sticky; top: 0; z-index: 1000;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    }
+    header .logo { font-size: 22px; font-weight: 700; }
+    nav ul { list-style: none; display: flex; gap: 20px; }
+    nav ul li a { color: white; text-decoration: none; font-weight: 500; transition: 0.3s; }
+    nav ul li a:hover { color: #ffdd59; }
+    .auth-buttons button {
+      padding: 8px 18px; margin-left: 10px; border: none; border-radius: 6px; cursor: pointer;
+      font-weight: 600; transition: 0.3s;
+    }
+    .signin { background: white; color: #3498db; }
+    .signin:hover { background: #ecf0f1; }
+    .login { background: #e74c3c; color: white; }
+    .login:hover { background: #c0392b; }
+
+    /* HERO SECTION */
+    .hero {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 80px 8%; background: #dfefff;
+    }
+    .hero-text { max-width: 50%; }
+    .hero-text h1 { font-size: 40px; font-weight: 700; margin-bottom: 20px; }
+    .hero-text p { font-size: 16px; line-height: 1.6; margin-bottom: 30px; }
+    .btn-primary {
+      background: #3498db; color: white; padding: 14px 24px; border-radius: 8px;
+      text-decoration: none; font-weight: 600; transition: 0.3s;
+    }
+    .btn-primary:hover { background: #2980b9; }
+    .hero img { max-width: 40%; border-radius: 10px; box-shadow: 0 8px 20px rgba(0,0,0,0.2); }
+
+    /* WHY CHOOSE BOXES */
+    .boxs {
+      height: 300px; width: 100%; display: flex; flex-direction: row;
+      justify-content: space-evenly; align-items: center; margin-top: 40px;
+    }
+    .box {
+      height: 300px; width: 420px; border: 2px solid black; border-radius: 45px;
+      background: linear-gradient(45deg, #8FBFFF, #B388F5, #ffffff);
+      display: flex; flex-direction: column; justify-content: center; align-items: center;
+      text-align: center; padding: 20px; transition: all 0.3s ease-in-out;
+    }
+    .box i { font-size: 40px; margin-bottom: 15px; }
+    .box:hover { background-color: lightblue; cursor: pointer; transform: scale(1.05); }
+    .box h3 { font-size: 20px; margin-bottom: 12px; font-weight: 600; }
+    .box p { font-size: 14px; line-height: 1.5; }
+
+    .headingwhy { text-align: center; margin-bottom: 20px; font-size: 25px; }
+    .About { text-align: center; padding: 50px 20%; }
+    .About h1 { font-size: 30px; font-weight: 700; margin-bottom: 20px; }
+    .About p { font-size: 16px; line-height: 1.6; }
+
+    .features-row { display: flex; justify-content: center; gap: 40px; padding: 20px; background: #f9fbff; }
+    .feature-item { max-width: 250px; text-align: center; }
+    .feature-item i { font-size: 20px; margin-bottom: 5px; display: block; }
+    .star-icon { color: #f1c40f; } .user-icon { color: #2a6cf0; }
+    .feature-item h4 { font-size: 1rem; font-weight: 600; margin-bottom: 5px; }
+    .feature-item p { font-size: 0.85rem; color: #555; line-height: 1.4; }
+
+    .footer-content { background: #252626; color: white; padding: 30px 8%; text-align: center; }
+    .footer-content a { color: white; margin: 0 10px; text-decoration: none; }
+
+    /* POPUP LOGIN */
+    .popup {
+      position: fixed; top: -150%; left: 50%;
+      transform: translate(-50%,-50%) scale(1.25);
+      width: 100%; max-width: 400px; padding: 20px 30px; background: #fff;
+      border-radius: 10px; display: flex; flex-direction: column;
+      justify-content: center; align-items: center;
+      visibility: hidden; opacity: 0; transition: all 0.3s ease;
+      box-shadow: 2px 2px 5px rgba(0,0,0,0.15); z-index: 2000;
+    }
+    .popup.active { top: 50%; visibility: visible; opacity: 1; transform: translate(-50%,-50%) scale(1); }
+    .popup .close-btn {
+      position: absolute; top: 15px; right: 20px; width: 30px; height: 30px;
+      background: #888; font-size: 20px; font-weight: 600; color: #eee;
+      cursor: pointer; text-align: center; line-height: 30px; border-radius: 50%;
+    }
+    .popup .form h2 { text-align: center; font-size: 24px; font-weight: 600; margin: 10px 0 20px 0; color: #333; }
+    .popup .form .form-element { margin: 15px 0; width: 100%; }
+    .popup .form .form-element label { font-size: 14px; color: #555; display: block; margin-bottom: 5px; }
+    .popup .form .form-element input[type="email"],
+    .popup .form .form-element input[type="password"] {
+      width: 100%; padding: 10px; outline: none; border: 1px solid #aaa; border-radius: 5px;
+    }
+    .popup .form .form-element input[type="checkbox"] { margin-right: 6px; }
+    .popup .form .form-element button {
+      width: 100%; height: 40px; border: none; font-size: 16px; background: #222; color: #f5f5f5;
+      border-radius: 10px; cursor: pointer;
+    }
+    .popup .form .form-element a { display: block; text-align: right; font-size: 14px; color: #222; text-decoration: none; font-weight: 600; }
+    .popup .form .signup { text-align: center; margin-top: 10px; font-size: 14px; }
+    .popup .form .signup a { color: #3a7bd5; text-decoration: none; font-weight: 600; }
+  </style>
+</head>
+<body>
+
+  <!-- NAVBAR -->
+  <header>
+    <div class="logo">MyStudyLife</div>
+    <nav>
+      <ul>
+        <li><a href="#">Home</a></li>
+        <li><a href="">Features</a></li>
+        <li><a href="#">About</a></li>
+      </ul>
+    </nav>
+    <div class="auth-buttons">
+      <button class="signin">Sign In</button>
+      <button id="show-login" class="login">Log In</button>
+    </div>
+  </header>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-text">
+      <h1 class="heading">smart study assistant</h1>
+      <p>An AI-powered chatbot designed to help students with career guidance, study support, and answering academic queries instantly.</p>
+      <a href="#" class="btn-primary">Get Started Free</a>
+    </div>
+    <img src="https://cdn.pixabay.com/photo/2016/11/19/14/00/success-1837334_960_720.jpg" alt="Success Steps">
+  </section>
+
+  <!-- WHY CHOOSE -->
+  <section>
+    <div class="whychose">
+      <div class="headingwhy">
+        <h1>Why Choose smart study assistant?</h1>
+        <p>Discover the powerful features that make learning easier and more effective</p>
+      </div>
+      <div class="boxs">
+        <div class="box">
+          <i class="fa-solid fa-book"></i>
+          <p>Get instant help with homework, explanations of complex concepts, and study strategies tailored to your learning style.</p>
+        </div>
+        <div class="box">
+          <i class="fa-solid fa-user-graduate"></i>
+          <h3>Career Guidance</h3>
+          <p>Explore career paths, get advice on course selection, and receive personalized recommendations for your future.</p>
+        </div>
+        <div class="box">
+          <i class="fa-solid fa-comments"></i>
+          <h3>Instant Answers</h3>
+          <p>Ask any academic question and get detailed, accurate answers instantly. Available 24/7 whenever you need help.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section class="About">
+    <h1>About smart study assistant</h1>
+    <p>Our AI assistant is built specifically for students, combining advanced natural language processing with educational expertise. We understand the challenges students face and provide personalized, intelligent support to help you succeed in your academic journey.</p>
+  </section>
+
+  <!-- FEATURES -->
+  <section class="features-row">
+    <div class="feature-item">
+      <i class="fas fa-star star-icon"></i>
+      <h4>Smart & Adaptive</h4>
+      <p>Learns from your interactions to provide increasingly personalized assistance.</p>
+    </div>
+    <div class="feature-item">
+      <i class="fas fa-user-friends user-icon"></i>
+      <h4>Student-Focused</h4>
+      <p>Designed specifically for students with features that address real academic needs.</p>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-content">
+      <h1>Smart study assistant</h1>
+      <p>Your AI-powered study companion for academic success.</p>
+      <a href="#">Privacy policy</a>
+      <a href="#">Terms of service</a>
+      <a href="#">Contact</a>
+    </div>
+  </footer>
+
+  <!-- POPUP LOGIN -->
+  <div class="popup" id="popup">
+    <div class="close-btn" id="close-btn">&times;</div>
+    <div class="form">
+      <h2>Log In</h2>
+      <div class="form-element">
+        <label for="email">Email</label>
+        <input type="email" id="email" placeholder="Enter your email">
+      </div>
+      <div class="form-element">
+        <label for="password">Password</label>
+        <input type="password" id="password" placeholder="Enter your password">
+      </div>
+      <!-- <div class="form-element">
+        <input type="checkbox" id="remember-me">
+        <label for="remember-me">Remember me</label>
+      </div> -->
+      <div class="form-element">
+        <button type="submit">Log In</button>
+      </div>
+      <div class="form-element">
+        <a href="#">Forgot password?</a>
+      </div>
+      <div class="form-element signup">
+        <span>Don't have an account? <a href="#">Sign up</a></span>
+      </div>
+    </div>
+  </div>
+
+  <!-- SCRIPT -->
+  <script>
+    const showLogin = document.getElementById("show-login");
+    const popup = document.getElementById("popup");
+    const closeBtn = document.getElementById("close-btn");
+
+    showLogin.addEventListener("click", () => {
+      popup.classList.add("active");
+    });
+
+    closeBtn.addEventListener("click", () => {
+      popup.classList.remove("active");
+    });
+
+    // Optional: close popup if clicked outside
+    window.addEventListener("click", (e) => {
+      if (e.target === popup) {
+        popup.classList.remove("active");
+      }
+    });
+  </script>
+
+</body>
+</html>
